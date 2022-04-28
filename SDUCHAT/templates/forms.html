@@ -1,0 +1,237 @@
+{% load crispy_forms_tags%}
+{% load static %}
+
+{% block style %}
+
+    <style>
+
+        html {
+            font-size: 62.35%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1.6rem;
+            background-color: white;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #161c2d;
+            overflow: hidden;
+        }
+
+        :root {
+            --textColorBlue: #5492FF;
+            --textColorWhite: #F2F8FF;
+     }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        p {
+            padding: 0;
+
+            margin: 0;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Forms */
+
+        .forms__inner {
+            display: flex;
+            height: 100vh;
+        }
+
+        .forms__name {
+            width: 30%;
+            background-color: var(--textColorBlue);
+            /* display: grid;
+            place-items: center; */
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+
+            font-weight: 700;
+            color: white;
+            font-size: 100px;
+            text-shadow: 0 4px 8px #fff;
+
+            animation: 1s infinite alternate text;
+            
+        }
+
+        @keyframes text {
+            0% {
+                text-shadow: none;
+            }
+
+            /* 50% {
+                text-shadow: 0 2px 4px #fff;
+            } */
+
+            100% {
+                text-shadow: 0 4px 8px #fff;
+            }
+        }
+
+        .forms__name > span {
+            font-size: 40px;
+        }
+
+        .forms__reg {
+            width: 70%;
+            background-color: var(--textColorWhite);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+
+
+        /* Form */
+
+        .forms__title {
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            font-size: 40px;
+            color: var(--textColorBlue);
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        .input__title {
+            font-family: "Helvetica Neue", sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .input {
+            border: none;
+            border-bottom: 1px solid rgb(0, 0, 0);
+            background-color: transparent;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            font-size: 18px;
+            width: 100%;
+            min-width: 400px;
+        }
+
+        .input::placeholder {
+            font-size: 1.5rem;
+        }
+
+        .input:focus {
+            outline: none;
+        }
+
+        .form__btn {
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            padding: 15px 70px;
+
+            margin-top: 10px;
+
+            background-color:white;
+            color: #5492FF;
+
+            border: 2px solid var(--textColorBlue);
+
+            font-weight: bold;
+            font-size: 1.6rem;  
+            position: relative;
+            
+            z-index: 1;
+            overflow: hidden;
+
+            transition: all .3s linear;
+            margin-right: 5px;
+        }
+
+        .form__btn > a {
+            color: #5492FF;
+            font-weight: bold;
+            font-size: 1.6rem;
+            transition: all .3s linear;
+        }
+
+        .form__btn::after {
+            content: "";
+            display: block;
+            height: 100%;
+            width: 0;
+
+            background-color: var(--textColorBlue);
+
+            transform: skew(50deg);
+            transition-duration: .3s;
+            transform-origin: top left;
+
+            position: absolute;
+            top: 0;
+            left: -35%;
+            z-index: -1;
+        }
+
+        .form__btn:hover::after {
+            height: 100%;
+            width: 135%;
+        }
+    
+        .form__btn:hover > a {
+            color: white;
+        }
+    </style>
+
+    {% endblock %}
+{% block content %}
+
+    <div class="forms">
+            <div class="forms__inner">
+                <div class="forms__name">
+                    SDU<br><span>CHAT</span>
+                </div>
+                <div class="forms__reg" style="display: flex;">
+
+                    <form action="" class="form2" method="POST" id="registor">
+                        {% csrf_token %}
+                        <h3 class="forms__title" style="text-align: center;">Registration</h3>
+
+                        {{form | crispy}}
+
+                        <div class="display" style="display: flex;">
+                        <button class="form__btn" id="form__log"><a href="{% url 'sigin' %}">Login</a></button>
+                        <button class="form__btn" type="submit">Registration</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

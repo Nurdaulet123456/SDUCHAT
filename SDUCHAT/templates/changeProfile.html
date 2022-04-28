@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block style %}
+    <style>
+         html {
+            font-size: 62.35%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1.6rem;
+            background-color: white;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #161c2d;
+            overflow: hidden;
+        }
+
+        :root {
+            --textColorBlue: #5492FF;
+            --textColorWhite: #fffdfd;
+            --headerColor: #163266;
+            --leftColor: #2953a1;
+     }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        p {
+            padding: 0;
+
+            margin: 0;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img {
+            display: block;
+            max-width: 100%;
+
+            margin-bottom: 40px;
+        }
+
+        /* Container */
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            height: 100vh;
+
+        }
+
+        .update {
+            display: grid;
+            place-items: center;
+        }
+
+        input {
+            border: none;
+            background-color: var(--textColorWhite);
+            padding: 15px 50px;
+            font-weight: normal;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            width: 100%;
+            min-width: 450px;
+        }
+
+        .btn {
+            border: none;
+            background-color: var(--leftColor);
+            padding: 15px 60px;
+            cursor: pointer;
+
+            color: white;
+
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+    </style>
+
+    {% endblock %}
+
+
+    {% block content %}
+    <div class="container" style="background-color: #163266;">
+
+        {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible"  role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+
+        <div class="update">
+            <div class="avatar">
+                <img src="{{ user.profile.avatar.url }}" alt="" class="img" width="200">
+            </div>
+
+            
+            <form class="form" action="" method="POST" enctype="multipart/form-data" style = "font-weight:700; width: 100%; max-width: 600px;">
+                {% csrf_token %}
+                <fieldset class = "form-group" style="color: white; margin: 0 auto; display: flex;
+                 flex-direction: column; align-items: center;">
+                    <legend class = "border-bottom mb-4" style="margin-bottom: 20px;">Update your profile information</legend>
+                   {{ profile_form }}
+
+                    <div style="display: flex;">
+                        <button class="btn" type="submit">Save change</button>
+                        <button class="btn" type="submit" style="margin-left: 20px">Reset change</button>
+                    </div>
+
+                    
+                </fieldset>
+            </form>
+          
+        </div>
+
+    </div>
+{% endblock %}
