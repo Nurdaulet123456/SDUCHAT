@@ -1,10 +1,12 @@
-from email import message
-import json 
+import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
+from asgiref.sync import sync_to_async
+from main.models import ChatModel
 
+from django.contrib.auth.models import User
 
-class PersonalChatConsumber(AsyncWebsocketConsumer):
+class PersonalChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         my_id = self.scope['user'].id
         other_user_id = self.scope['url_route']['kwargs']['id']
@@ -51,3 +53,8 @@ class PersonalChatConsumber(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
+
+    @database_sync_to_async
+    def save_message(self, username, thread_name, message):
+        ChatModel.objects.create(
+            sender=username, message=message, thread_name=thread_name)

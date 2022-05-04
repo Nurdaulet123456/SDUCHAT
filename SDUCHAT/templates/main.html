@@ -25,6 +25,7 @@
             --textColorBlue: #5492FF;
             --textColorWhite: #fffdfd;
             --headerColor: #163266;
+            --leftbgColor: #163266;
             --leftColor: #c0d3f7;
      }
 
@@ -43,6 +44,10 @@
         h1,h2,h3,h4,h5,h6 {
             margin: 0;
             padding: 0;
+        }
+
+        a {
+            text-decoration: none;
         }
 
         .img {
@@ -65,13 +70,16 @@
         }
 
         .left__content {
-            background-color: var(--leftColor);
+            background-color: var(--leftbgColor);
             flex-basis: 35%;
             position: sticky;
             align-self: flex-start;
             height: 100vh;
             border-right: 1px solid black;
+
+            
         }
+
 
         .right__content {
             background-color: var(--textColorWhite);
@@ -85,7 +93,7 @@
         .header__me {
             display: flex;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
         }
 
         /* Profile Modal */
@@ -197,7 +205,7 @@
 
         .header__me {
             color: white;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .search {
@@ -205,10 +213,12 @@
             border: none;
             border-radius: 5px;
             padding: 13px 20px;
-            background-color: rgb(201, 201, 201);
+            background-color: rgb(252, 252, 252, .3);
             font-size: 14px;
             letter-spacing: 2px;
             margin-bottom: 20px;
+
+            color: white;
         }
 
         .search:focus {
@@ -216,7 +226,7 @@
         }
 
         .search::placeholder {
-            color: rgb(117, 117, 117);
+            color: rgb(207, 207, 207);
         }
 
         .left {
@@ -258,6 +268,14 @@
             justify-content: space-between;
         }
 
+        .form-control::placeholder {
+            color: rgb(207, 207, 207);;
+        }
+
+        .form-control:focus {
+            outline: none;
+        }
+
 
         .message__img > input {
             width: 100%;
@@ -284,29 +302,17 @@
             white-space: nowrap;
         }
 
-        .left__content:hover {
+        .left__content{
             overflow-y: scroll;
         }
 
-        .left__content:hover::-webkit-scrollbar {
+        .left__content::-webkit-scrollbar {
             
-        width: 20px;    
+        width: 10px;    
         }
-
-        .left__content::-webkit-scrollbar-track {
-            background: rgb(224, 224, 224);    
-        }
-
         .left__content::-webkit-scrollbar-thumb {
-            border-radius: 5px;
+            border-radius: 3px;
              background: rgb(183, 182, 182);
-             transition: all 0.2s linear;
-        }
-
-        .left__content::-webkit-scrollbar-thumb:hover {
-             background: rgb(119, 119, 119);
-             transition: all 0.2s linear;
-
         }
         
         /* Modal */
@@ -406,6 +412,15 @@ ul, li, ol {
 .chat {
     background-color: white!important;
 }
+
+.left {
+    position: relative;
+}
+
+.set_btn {
+    position: absolute;
+    right: 10px;
+}
     </style>
 
     {% endblock %}
@@ -420,20 +435,21 @@ ul, li, ol {
                 <div class="header__me">
                     <img width="60" src="{{ request.user.profile.avatar.url }}" alt="">
                     <h3 class="header__name">{{request.user.email}}<br><span style="font-size: 1.4rem; font-weight: normal; font-style: italic;">online</span></h3>
+                    <a class="set_btn" href="#"><img width="30" src="{% static 'img/settings.png' %}" alt=""></a>
              </div>
              {% endif %}
                 <div style="padding: 0 20px;">
                 <form action="." method="get">
                     {% csrf_token %}
-                    <input class="search" type="search" placeholder="Search....." name="searched">
+                    <input class="search" type="text" placeholder="Search....." name="searched">
                 </form>
                 </div>
                 </div>
               {% for user in users %}
                 <div class="s">
-                <div class="header__me scroll_me" style="border-bottom: 1px solid black; cursor: pointer;">
+                <div class="header__me scroll_me" style="cursor: pointer;">
                     <img width="60" src="{% static 'img/account.png' %}" alt=""> 
-                    <a href="{% url 'mainarg' user.username%}"><h3 class="header__name" style="color: black; font-size: 25px; line-height: 0.98;">{{user.username}}<br><span style="font-size: 1.8rem; font-weight: normal; font-style: italic; color: black;">online</span></h3></a>
+                    <a class="user" href="{% url 'chat' user.username%}"><h3 class="header__name" style="color: white; font-size: 25px; line-height: 0.98;">{{user.username}}<br><span style="font-size: 1.3rem; font-weight: normal; font-style: italic; color: white;">online</span></h3></a>
                 </div>
             </div>
 
@@ -443,17 +459,65 @@ ul, li, ol {
                 <div class="right__content" style="position: relative;">
                     
                 <div class="right__header" id = "parent">
-                    <a href="#" style="text-decoration: none;" id = "NameA"><h3 id="Name" class="group__name" style="color: white;">{{to_user}}</span></h3></a>
-                    <a class="set_btn" href="#"><img width="30" src="{% static 'img/settings.png' %}" alt=""></a>
+                    <a href="#" style="text-decoration: none;" id = "NameA"><h3 id="Name" class="group__name" style="color: white;">{{user}}</span></h3></a>
+                    <!-- <a class="set_btn" href="#"><img width="30" src="{% static 'img/settings.png' %}" alt=""></a> -->
+                </div>
+                <div class="message-table-scroll" style="width: 100%; max-width: 100%;">
+                    <table class="table">
+                        <tbody id='chat-body'>
+                            {% for message in messages %}
+                            {% if message.sender == request.user.username %}
+                            <tr style="display: flex;">
+                                <td>
+                                    <p class="bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">
+                                        {{message.message}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p><small class="p-1 shadow-sm">{{message.timestamp|time:'H:i'}}</small>
+                                    </p>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td>
+                                    <p class="bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">
+                                        {{message.message}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p><small class="p-1 shadow-sm">{{message.timestamp|time:'H:i'}}</small>
+                                    </p>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
                 <div class="right__message">
                      <div class="col-sm-8">
-                        <input type="text" class="form-control" id="message_input" placeholder="Write message...">
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="message_input" 
+                        placeholder="Write message..." 
+                        style="width: 100%; min-width: 1000px; padding: 10px 20px; background-color: transparent; border: none; color: white; font-size: 18px; ">
 
                     </div>
                     <div class="col-sm-2 mt-1">
                         <div class="control">
-                            <button class="btn btn-success" id="chat-message-submit">Submit</button>
+                            <button 
+                            class="btn btn-success" 
+                            id="chat-message-submit" 
+                            style="border: none; background-color: transparent; cursor: pointer;">
+
+                                <img 
+                                width="20"
+                                src="{% static 'img/send.png' %}" 
+                                alt="">
+
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -494,17 +558,23 @@ ul, li, ol {
         </div>
     </div>
     </div>
-{% if pk and to_user %}
-{{pk|json_script:"json-username"}}
-{{to_user|json_script:"json-message-username"}}
-{% endif %}
+
+{{user.id|json_script:"json-username"}}
+{{request.user.username|json_script:"json-message-username"}}
 
 
+{% endblock %}
+
+
+{% block javascript %}
 <!-- Script -->
+
+
 
 <script type="text/javascript">
 
-    let btn = document.querySelector('.set_btn');
+    
+let btn = document.querySelector('.set_btn');
     let close = document.querySelector('.close__btn');
     let modal = document.querySelector('.profile__modal');
     let change = document.querySelector('.user__btn');
@@ -542,13 +612,11 @@ function showEmail(email) {
     Name.innerHTML = email;
     
 }
-</script>
 
-<script type="text/javascript">
-    const id = JSON.parse(document.getElementById('json-username').textContent)
-    const message_username = JSON.parse(document.getElementById('json-message-username').textContent)
+    const id = JSON.parse(document.getElementById('json-username').textContent);
+const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
 
-    const socket = new WebSocket(
+const socket = new WebSocket(
     'ws://'
     + window.location.host
     + '/ws/'
@@ -556,38 +624,54 @@ function showEmail(email) {
     + '/'
 );
 
-    socket.onopen = function(e) {
-        console.log('CONNECTION ESTABLISHED');
+socket.onopen = function(e){
+    console.log("CONNECTION ESTABLISHED");
+}
+
+socket.onclose = function(e){
+    console.log("CONNECTION LOST");
+}
+
+socket.onerror = function(e){
+    console.log("ERROR OCCURED");
+}
+
+socket.onmessage = function(e){
+    const data = JSON.parse(e.data);
+    console.log(data)
+    if(data.username == message_username){
+        document.querySelector('#chat-body').innerHTML += `<tr>
+                                                                <td>
+                                                                <p class="bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">${data.message}</p>
+                                                                </td>
+                                                            </tr>`
+    }else{
+        document.querySelector('#chat-body').innerHTML += `<tr>
+                                                                <td>
+                                                                <p class="bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">${data.message}</p>
+                                                                </td>
+                                                            </tr>`
     }
+}
 
+document.querySelector('#chat-message-submit').onclick = function(e){
 
-    socket.onerror = function(e) {
-        console.log(e)
-    }
-
-    socket.onmessage = function(e) {
-        const data = JSON.parse(e.data);
-
-        console.log(data.username)
-    }
-    
-    document.querySelector('#chat-message-submit').onclick = function(e){
     const message_input = document.querySelector('#message_input');
     const message = message_input.value;
 
-   
     socket.send(JSON.stringify({
         'message':message,
         'username':message_username
     }));
-
-
     console.log(e)
-
     message_input.value = '';
 }
 
 
+
+// document.querySelector('.user').addEventListener('click', (e) => {
+//     e.preventDefault();
+// })
 </script>
 
 

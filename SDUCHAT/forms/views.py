@@ -21,6 +21,7 @@ def index(request):
             else:    
                 messages.success(request, 'Account created')
                 form.save()
+                return redirect('sigin')
             
     else:
         form = UserRegistraionsFroms()

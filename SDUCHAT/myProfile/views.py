@@ -28,7 +28,7 @@ def updateProfile(request):
             return redirect('main')
     else:
         user_form = UpdateUserForm(instance=request.user)
-        profile_form = UpdateProfileForm(instance=request.user.profile)
+        profile_form = UpdateProfileForm(instance=request.user      )
     
     context = {'user_form': user_form, 'profile_form': profile_form}
     return render(request, 'changeProfile.html', context)
