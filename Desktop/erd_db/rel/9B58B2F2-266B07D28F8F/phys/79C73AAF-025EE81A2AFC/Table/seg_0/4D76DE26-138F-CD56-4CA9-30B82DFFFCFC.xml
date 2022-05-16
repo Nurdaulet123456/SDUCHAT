@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="DBMS_ARCHIVE" directorySegmentName="seg_0" id="4D76DE26-138F-CD56-4CA9-30B82DFFFCFC">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<schemaObject>5A1B6956-3DF6-DDC0-692D-36969C96DC57</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>25C8D91B-61B2-6450-CC11-044EEC32E62B</segment>
+<tableSpace>975490B8-2FDE-31EA-D4B2-A8DED3C3D601</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="STUDENT_NAME" id="12C618CE-8CFE-6AD9-8172-6B401DA2FCD9">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PHONE" id="963754D6-654C-77C6-370B-45F44CF97308">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="STUDENT_ID" id="9C0DD52E-8FE4-1435-76BB-194D4FA22FDE">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="EMAIL" id="AD039BFE-1BFD-C131-A689-1CC832B7EDDC">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="STUDENT_LNAME" id="B15EEABD-594C-BEEA-4D3E-72DE7926FD27">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="YEAR" id="D9086FE6-6802-66EF-4776-318E5BC92874">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID" id="F6E67E30-ED88-498F-E959-C065DA5582F5">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DBMS_ARCHI_STUDENT_ID_6D1531FF" id="24789F0C-DFEE-8C0D-575E-8F2C38927846">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<schemaObject>5A1B6956-3DF6-DDC0-692D-36969C96DC57</schemaObject>
+<segment>9E9AF7BB-9046-6359-BF1B-A36523851953</segment>
+<tableSpace>975490B8-2FDE-31EA-D4B2-A8DED3C3D601</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DBMS_ARCH_STUDENT_I_6D1531FF_F" id="A3388DF9-5726-E539-682E-68B361C86858">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<deferrable>YES</deferrable>
+<initially>DEFERRED</initially>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DBMS_ARCHIVE_PK" id="E664EC19-A2C4-BE11-DE7F-A032E721FEF2">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<schemaObject>5A1B6956-3DF6-DDC0-692D-36969C96DC57</schemaObject>
+<segment>9E9AF7BB-9046-6359-BF1B-A36523851953</segment>
+<tableSpace>975490B8-2FDE-31EA-D4B2-A8DED3C3D601</tableSpace>
+<indexSegment>9E9AF7BB-9046-6359-BF1B-A36523851953</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

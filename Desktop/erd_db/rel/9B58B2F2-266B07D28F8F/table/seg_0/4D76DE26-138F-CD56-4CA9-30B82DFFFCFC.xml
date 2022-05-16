@@ -1,0 +1,167 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4D76DE26-138F-CD56-4CA9-30B82DFFFCFC" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_ARCHIVE">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>DBMS_ARCHIVE</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="F6E67E30-ED88-498F-E959-C065DA5582F5">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_ARCHIVE</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>19</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,19,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="STUDENT_NAME" id="12C618CE-8CFE-6AD9-8172-6B401DA2FCD9">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_ARCHIVE</sourceObjSchema>
+<sourceObjName>STUDENT_NAME</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STUDENT_LNAME" id="B15EEABD-594C-BEEA-4D3E-72DE7926FD27">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_ARCHIVE</sourceObjSchema>
+<sourceObjName>STUDENT_LNAME</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMAIL" id="AD039BFE-1BFD-C131-A689-1CC832B7EDDC">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_ARCHIVE</sourceObjSchema>
+<sourceObjName>EMAIL</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PHONE" id="963754D6-654C-77C6-370B-45F44CF97308">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_ARCHIVE</sourceObjSchema>
+<sourceObjName>PHONE</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="YEAR" id="D9086FE6-6802-66EF-4776-318E5BC92874">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_ARCHIVE</sourceObjSchema>
+<sourceObjName>YEAR</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,11,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STUDENT_ID" id="9C0DD52E-8FE4-1435-76BB-194D4FA22FDE">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_ARCHIVE</sourceObjSchema>
+<sourceObjName>STUDENT_ID</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>19</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,19,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1E867F18-F021-39BD-585B-61EB47569715" referredColumn="25F2DBEE-F2AD-846D-750F-0F0A5C8106D6"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E664EC19-A2C4-BE11-DE7F-A032E721FEF2" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_ARCHIVE_PK">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>SYS_C008611</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F6E67E30-ED88-498F-E959-C065DA5582F5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="24789F0C-DFEE-8C0D-575E-8F2C38927846" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_ARCHI_STUDENT_ID_6D1531FF">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>DBMS_ARCHI_STUDENT_ID_6D1531FF</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C0DD52E-8FE4-1435-76BB-194D4FA22FDE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A3388DF9-5726-E539-682E-68B361C86858" name="DBMS_ARCH_STUDENT_I_6D1531FF_F">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:02:07 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9C0DD52E-8FE4-1435-76BB-194D4FA22FDE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

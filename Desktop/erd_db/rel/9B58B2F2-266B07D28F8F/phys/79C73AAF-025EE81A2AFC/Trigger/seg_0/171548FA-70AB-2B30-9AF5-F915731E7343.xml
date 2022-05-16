@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="INS_PARENT" directorySegmentName="seg_0" id="171548FA-70AB-2B30-9AF5-F915731E7343">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>INS_PARENT</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:00:58 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+    if inserting then
+    Insert into dbms_parent(parent_name, parent_lname, phone, student_id)
+    values (:new.parent_name, :new.parent_lname, :new.phone, :new.id);
+    end if;
+end;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>DC332142-DE90-F15B-094C-EFA859501ED6</owner>
+<table>8B74D8AA-392F-2993-52B1-792E7E713285</table>
+</TriggerOraclev10g>

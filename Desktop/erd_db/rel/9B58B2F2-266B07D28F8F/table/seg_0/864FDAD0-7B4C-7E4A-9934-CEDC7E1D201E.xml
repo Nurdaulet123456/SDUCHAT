@@ -1,0 +1,165 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="864FDAD0-7B4C-7E4A-9934-CEDC7E1D201E" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_GRADE">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>DBMS_GRADE</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="4F1DD3B7-6FA3-C041-AD9C-2305B2661712">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_GRADE</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>19</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,19,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="GRADE_PREFINAL" id="9A1260A6-CF5C-D044-C414-4456C29A78A0">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_GRADE</sourceObjSchema>
+<sourceObjName>GRADE_PREFINAL</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,11,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GRADE_FINAL" id="130457C9-F8A1-D5BA-BAE3-F712E943B8F7">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_GRADE</sourceObjSchema>
+<sourceObjName>GRADE_FINAL</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,11,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STUDENT_ID" id="BCA15594-E83E-1F3F-8B26-2A8219D9EFBB">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_GRADE</sourceObjSchema>
+<sourceObjName>STUDENT_ID</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>19</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,19,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4E22FD2F-3F8C-D034-CD47-BA8FA090D310" referredColumn="25F2DBEE-F2AD-846D-750F-0F0A5C8106D6"/>
+</associations>
+</Column>
+<Column name="SUBJECT_ID" id="B250E037-C709-B51F-0B3A-DB4BAEBB0883">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_GRADE</sourceObjSchema>
+<sourceObjName>SUBJECT_ID</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>19</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,19,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2BB4A9CF-6EF9-BD4C-9519-702ACC4CEC3A" referredColumn="DDE657BF-7766-B793-B0E2-66AEB04A0EE6"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="550DD9EB-DB9E-FB69-04B1-BDE9A5D5DACC" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_GRADE_PK">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>SYS_C008608</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4F1DD3B7-6FA3-C041-AD9C-2305B2661712"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2EC001F3-FD5F-1A23-EFCB-5F9D9D4A41C0" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_GRADE_STUDENT_ID_AA7177A0">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>DBMS_GRADE_STUDENT_ID_AA7177A0</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BCA15594-E83E-1F3F-8B26-2A8219D9EFBB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D2F4AB9-917C-419E-9F27-170B92DF3BC2" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_GRADE_SUBJECT_ID_7AEE48F2">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>DBMS_GRADE_SUBJECT_ID_7AEE48F2</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B250E037-C709-B51F-0B3A-DB4BAEBB0883"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="688669FC-0A46-5591-0154-4BFA4EA5D8E3" name="DBMS_GRAD_STUDENT_I_AA7177A0_F">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BCA15594-E83E-1F3F-8B26-2A8219D9EFBB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="30AF59B6-BF1B-899C-A871-BD4DD241B74B" name="DBMS_GRAD_SUBJECT_I_7AEE48F2_F">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B250E037-C709-B51F-0B3A-DB4BAEBB0883"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

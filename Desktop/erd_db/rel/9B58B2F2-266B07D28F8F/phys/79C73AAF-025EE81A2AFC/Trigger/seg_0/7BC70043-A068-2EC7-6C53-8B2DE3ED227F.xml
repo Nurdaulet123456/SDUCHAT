@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="ADD_ARCH" directorySegmentName="seg_0" id="7BC70043-A068-2EC7-6C53-8B2DE3ED227F">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>ADD_ARCH</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:00:58 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[declare
+    YEAR_DIF NUMBER;
+    begin 
+    YEAR_DIF:= (Extract(Year from SYSDATE)-(:new.YEAR));
+
+        if YEAR_DIF>=4 then
+        insert into dbms_archive(student_name, student_lname, email, phone, student_id, year)
+        values (:new.student_name, :new.student_lname, :new.email, :new.phone, :new.id, :new.year);
+        end if;
+    end;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>DC332142-DE90-F15B-094C-EFA859501ED6</owner>
+<table>8B74D8AA-392F-2993-52B1-792E7E713285</table>
+</TriggerOraclev10g>

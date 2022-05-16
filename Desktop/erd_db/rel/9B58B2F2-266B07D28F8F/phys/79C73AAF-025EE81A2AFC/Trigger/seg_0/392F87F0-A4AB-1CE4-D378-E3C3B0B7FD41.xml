@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="LETTER_GRADE" directorySegmentName="seg_0" id="392F87F0-A4AB-1CE4-D378-E3C3B0B7FD41">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>LETTER_GRADE</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[begin
+    if (:new.grade_prefinal + :new.grade_final)>=90 then
+    insert into dbms_grade_report(grade_prefinal, grade_final, student_id, subject_id, letter_grade) values (:new.grade_prefinal, :new.grade_final, :new.student_id, :new.subject_id, 'A');
+    elsif(:new.grade_prefinal + :new.grade_final)>=70 then
+    insert into dbms_grade_report(grade_prefinal, grade_final, student_id, subject_id, letter_grade) values (:new.grade_prefinal, :new.grade_final, :new.student_id, :new.subject_id, 'A+');
+    elsif(:new.grade_prefinal + :new.grade_final)>=80 then
+        insert into dbms_grade_report(grade_prefinal, grade_final, student_id, subject_id, letter_grade) values (:new.grade_prefinal, :new.grade_final, :new.student_id, :new.subject_id, 'B');
+        elsif(:new.grade_prefinal + :new.grade_final)>=60 then
+    insert into dbms_grade_report(grade_prefinal, grade_final, student_id, subject_id, letter_grade) values (:new.grade_prefinal, :new.grade_final, :new.student_id, :new.subject_id, 'C');
+       elsif(:new.grade_prefinal + :new.grade_final)>=50 then
+    insert into dbms_grade_report(grade_prefinal, grade_final, student_id, subject_id, letter_grade) values (:new.grade_prefinal, :new.grade_final, :new.student_id, :new.subject_id, 'D');
+     else
+    insert into dbms_grade_report(grade_prefinal, grade_final, student_id, subject_id, letter_grade) values (:new.grade_prefinal, :new.grade_final, :new.student_id, :new.subject_id, 'F');
+
+    end if;
+end;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>DC332142-DE90-F15B-094C-EFA859501ED6</owner>
+<table>864FDAD0-7B4C-7E4A-9934-CEDC7E1D201E</table>
+</TriggerOraclev10g>

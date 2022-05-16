@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="DBMS_PARENT" directorySegmentName="seg_0" id="115AC524-81CE-848D-39E5-ADD9DA384084">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<schemaObject>5A1B6956-3DF6-DDC0-692D-36969C96DC57</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>25C8D91B-61B2-6450-CC11-044EEC32E62B</segment>
+<tableSpace>975490B8-2FDE-31EA-D4B2-A8DED3C3D601</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="PHONE" id="029438F8-3EE0-57FF-D743-A22CE5905575">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="PARENT_NAME" id="1E9CC3EC-CA2A-56F0-6068-FFA0449EE677">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="STUDENT_ID" id="8727B2F8-A39A-4A88-EE65-46F9F5A4075E">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ID" id="B7F9A0BE-D9B8-78A0-1CA3-544CDF9D35E9">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<autoIncrementDDL>IDENTITY_CLAUSE</autoIncrementDDL>
+</ColumnProxy>
+<ColumnProxy name="PARENT_LNAME" id="BDD4C3C6-8536-38B2-DF71-29E875BFEEAB">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DBMS_PAREN_STUDENT_ID_53FD3612" id="F7BA13EB-BE03-C264-9593-151C893D4347">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<schemaObject>5A1B6956-3DF6-DDC0-692D-36969C96DC57</schemaObject>
+<segment>9E9AF7BB-9046-6359-BF1B-A36523851953</segment>
+<tableSpace>975490B8-2FDE-31EA-D4B2-A8DED3C3D601</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DBMS_PARE_STUDENT_I_53FD3612_F" id="0158654C-7D49-2B81-C88E-E20414BBF4E8">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<deferrable>YES</deferrable>
+<initially>DEFERRED</initially>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DBMS_PARENT_PK" id="35D7B71C-DB4E-BB3C-9E7F-C5EA87B97462">
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:28 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<schemaObject>5A1B6956-3DF6-DDC0-692D-36969C96DC57</schemaObject>
+<segment>9E9AF7BB-9046-6359-BF1B-A36523851953</segment>
+<tableSpace>975490B8-2FDE-31EA-D4B2-A8DED3C3D601</tableSpace>
+<indexSegment>9E9AF7BB-9046-6359-BF1B-A36523851953</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

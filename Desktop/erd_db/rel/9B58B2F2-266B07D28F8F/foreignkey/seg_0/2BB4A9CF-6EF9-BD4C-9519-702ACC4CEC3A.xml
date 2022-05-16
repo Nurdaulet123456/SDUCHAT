@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2BB4A9CF-6EF9-BD4C-9519-702ACC4CEC3A" containerWithKeyObject="864FDAD0-7B4C-7E4A-9934-CEDC7E1D201E" localFKIndex="30AF59B6-BF1B-899C-A871-BD4DD241B74B" name="DBMS_GRAD_SUBJECT_I_7AEE48F2_F">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>DBMS_GRAD_SUBJECT_I_7AEE48F2_F</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:38 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<referredTableLongName>C##NAZ.DBMS_SUBJECT</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2CEF253B-8009-89F5-2A03-0D5D2EDF6039</referredTableID>
+<keyObject>D009AC35-8BD6-F35D-1531-FF1809318C21</keyObject>
+<referredKeyID>D009AC35-8BD6-F35D-1531-FF1809318C21</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2CEF253B-8009-89F5-2A03-0D5D2EDF6039" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_SUBJECT">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>DBMS_SUBJECT</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:08 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="DDE657BF-7766-B793-B0E2-66AEB04A0EE6">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_SUBJECT</sourceObjSchema>
+<sourceObjName>ID</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:08 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>19</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,19,0</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<defaultOntNull>true</defaultOntNull>
+<autoIncrementCycle>false</autoIncrementCycle>
+<autoIncrementDisableCache>false</autoIncrementDisableCache>
+<autoIncrementCache>20</autoIncrementCache>
+<autoIncrementOrder>false</autoIncrementOrder>
+</Column>
+<Column name="SUBJECT_NAME" id="B971F9ED-F7B4-07E0-1C18-E5C86308B57A">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>DBMS_SUBJECT</sourceObjSchema>
+<sourceObjName>SUBJECT_NAME</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:08 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D009AC35-8BD6-F35D-1531-FF1809318C21" schemaObject="5A1B6956-3DF6-DDC0-692D-36969C96DC57" name="DBMS_SUBJECT_PK">
+<sourceConnName>mysdu</sourceConnName>
+<sourceObjSchema>C##NAZ</sourceObjSchema>
+<sourceObjName>SYS_C008602</sourceObjName>
+<createdBy>Акбаян</createdBy>
+<createdTime>2022-05-16 15:01:08 UTC</createdTime>
+<ownerDesignName>erd_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DDE657BF-7766-B793-B0E2-66AEB04A0EE6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
