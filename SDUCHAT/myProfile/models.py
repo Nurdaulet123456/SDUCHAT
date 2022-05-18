@@ -8,4 +8,4 @@ class Profile(models.Model):
     username = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
-    avatar = models.ImageField(blank=True, default='img/account.png', upload_to='media/img/')
+    avatar = models.ImageField(blank=True, default='img/icons8-account-48.png', upload_to='media/img/')
