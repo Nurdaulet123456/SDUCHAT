@@ -19,8 +19,8 @@
         -moz-osx-font-smoothing: grayscale;
         color: #161c2d;
         overflow: hidden;
-        position: relative!important; 
-       
+        position: relative !important;
+
     }
 
     :root {
@@ -71,6 +71,7 @@
     .page {
         overflow: hidden;
     }
+
     /* Container */
 
     .container {
@@ -102,7 +103,7 @@
 
         padding: 20px;
     }
-    
+
 
     .right__content {
         width: calc(100% - 520px);
@@ -111,15 +112,15 @@
         top: 20px;
         right: 20px;
         background-color: var(--mainBgColor);
-        
+
         border-radius: 15px;
-        
+
     }
 
     .left {
         background-color: var(--mainBgColor);
 
-        border-radius: 15px;    
+        border-radius: 15px;
 
         padding: 20px 20px;
 
@@ -200,7 +201,7 @@
         -webkit-mask-position: left bottom;
     }
 
-    
+
 
     .scroll_me img {
         margin-right: 20px;
@@ -227,10 +228,10 @@
         margin-bottom: 30px;
     }
 
-    .right__content > .group__name {
+    .right__content>.group__name {
         color: black;
     }
-    
+
 
     .right__message {
         width: 100%;
@@ -250,7 +251,7 @@
         padding: 20px;
         border-radius: 10px;
         position: relative;
-        background-color: rgba(0,0,0,0.0290);
+        background-color: rgba(0, 0, 0, 0.0290);
 
         color: black;
         font-size: 18px;
@@ -280,6 +281,7 @@
 
     .flex_left {
         display: flex;
+        align-items: center;
         justify-content: flex-start;
         margin-bottom: 20px;
     }
@@ -296,12 +298,16 @@
         border-radius: 10px 10px 0 10px;
         background-color: #fff;
         color: black;
+        margin-right: 10px;
     }
 
     .main-message-chat {
         margin-top: 40px;
     }
 
+    .scroll_me.active {
+        background-color: var(--mainBgColor);
+    }
 </style>
 
 {% endblock %}
@@ -309,41 +315,41 @@
 {% block content %}
 
 <div class="page">
-        <div class="left__content">
-            <div class="left">
-                {% if request.user.is_authenticated %}
-                <div class="header__me">
-                    <img class="avatar" width="60" src="{{ request.user.profile.avatar.url }}" alt="">
-                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+    <div class="left__content">
+        <div class="left">
+            {% if request.user.is_authenticated %}
+            <div class="header__me">
+                <img class="avatar" width="60" src="{{ request.user.profile.avatar.url }}" alt="">
+                <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
                     <h3 class="header__name user_name">{{request.user.email}}</h3>
                     <a class="set_btn" href="#"><img width="25" src="{% static 'img/settings.png' %}" alt=""></a>
-                    </div>
-                </div>
-                {% endif %}
-                <div style="padding: 0 20px;">
-                    <form action="." method="get">
-                        {% csrf_token %}
-                        <input class="search" type="text" placeholder="Search....." name="searched">
-                    </form>
                 </div>
             </div>
-            {% for user in users %}
-            <div class="s">
-                <div class="header__me scroll_me" style="cursor: pointer;">
-                    <img width="60" src="{% static 'img/icons8-account-48.png' %}" alt="">
-                    <a class="user" href="{% url 'chat' user.username%}">
-                        <h3 class="header__name">
-                            {{user.username}}
-                        </h3>
-                    </a>
-                </div>
+            {% endif %}
+            <div style="padding: 0 20px;">
+                <form action="." method="get">
+                    {% csrf_token %}
+                    <input class="search" type="text" placeholder="Search....." name="searched">
+                </form>
             </div>
-
-            {% endfor %}
-
         </div>
-        <div class="right__content">
-            <div class="container">
+        {% for user in users %}
+        <div class="s">
+            <div class="header__me scroll_me" id="scroll_me" style="cursor: pointer;">
+                <img width="60" src="{% static 'img/icons8-account-48.png' %}" alt="">
+                <a class="user" id="user" href="{% url 'chat' user.username%}">
+                    <h3 class="header__name">
+                        {{user.username}}
+                    </h3>
+                </a>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+    <div class="right__content">
+        <div class="container">
             <div class="right__header" id="parent">
                 <a href="#" style="text-decoration: none;" id="NameA">
                     <h3 id="Name" class="group__name">{{user}}</h3>
@@ -357,18 +363,21 @@
                         {% if message.sender == request.user.username %}
                         <tr class="flex_right">
                             <td>
-                                <p class="message-send-right bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">
+                                <p
+                                    class="message-send-right bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">
                                     {{message.message}}
                                 </p>
                             </td>
                             <td>
-                                <p><small class="p-1 shadow-sm" style="margin-left: 10px;">{{message.timestamp|time:'H:i'}}</small></p>
+                                <p><small class="p-1 shadow-sm"
+                                        style="margin-left: 10px;">{{message.timestamp|time:'H:i'}}</small></p>
                             </td>
                         </tr>
                         {% else %}
                         <tr class="flex_left">
                             <td>
-                                <p class="message-send-left bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">
+                                <p
+                                    class="message-send-left bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">
                                     {{message.message}}
                                 </p>
                             </td>
@@ -398,7 +407,7 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
 <!-- <div class="profile__modal">
     <div class="profile__inner">
@@ -538,13 +547,7 @@
         message_input.value = '';
     }
 
-
-
-// document.querySelector('.user').addEventListener('click', (e) => {
-//     e.preventDefault();
-// })
 </script>
-
 
 
 {% endblock %}
