@@ -22,17 +22,28 @@ def main(request, username):
     query = request.GET.get('searched') 
 
     user_obj = User.objects.get(username=username)
-    users = User.objects.exclude(username=request.user.username)
+    # users = User.objects.exclude(username=request.user.username)
 
+    if query:
+        users = User.objects.filter(Q(username__icontains=query))
+    else:
+        users = User.objects.all()
+ 
     if not query:
         query = ""
-    users = User.objects.filter(Q(username__icontains=query))
+        
+
+    
 
     if request.user.id > user_obj.id:
         thread_name = f'chat_{request.user.id}-{user_obj.id}'
     else:
         thread_name = f'chat_{user_obj.id}-{request.user.id}'
     message_objs = ChatModel.objects.filter(thread_name=thread_name)
+
+    # message = ChatModel.objects.filte)
+
+    
     return render(request, 'main.html', context={'user': user_obj, 'users': users, 'messages': message_objs})
 
 

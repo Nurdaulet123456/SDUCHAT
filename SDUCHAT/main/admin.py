@@ -4,4 +4,5 @@ from .models import *
 
 admin.site.register(People)
 admin.site.register(Message)
+admin.site.register(ChatModel)
 

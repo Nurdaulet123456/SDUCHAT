@@ -308,6 +308,130 @@
     .scroll_me.active {
         background-color: var(--mainBgColor);
     }
+
+    /* Modal */
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2000000;
+        padding: 30px 15px;
+        overflow: auto;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal.show {
+        display: block;
+    }
+
+    .modal__inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+    }
+
+    .modal__content {
+        background-color: var(--mainBgColor);
+        width: 100%;
+        max-width: 400px;
+        padding: 25px;
+        position: relative;
+        transform: rotate(360deg);
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    }
+
+    .setting {
+        text-align: center;
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+
+    .upload__img>img {
+        margin-left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .user__input {
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 12px 12px;
+
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .user__btn {
+        display: flex;
+        padding: 10px 35px;
+
+        margin-top: 20px;
+
+        border-radius: 5px;
+        border: 1px solid black;
+        color: black;
+
+        background: transparent;
+    }
+
+    .close__btn {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        position: absolute;
+        top: -35px;
+        right: -55px;
+
+        transition: all .2s linear;
+    }
+
+    .close__btn:hover {
+        transform: rotate(45deg);
+    }
+
+    .td_right {
+        position: relative !important;
+    }
+
+    .on {
+        width: 100%;
+        list-style: none;
+        margin: 0;
+        margin-top: 10px;
+        padding: 10px 0;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: white;
+        display: none;
+
+        position: absolute;
+        top: 100%;
+        z-index: 10000;
+
+        transition: all .2s linear;
+    }
+
+    .on:hover {
+        background-color: rgb(215, 214, 214);
+    }
+
+    .on.block {
+        display: block;
+    }
+
+    .modal__user.show {
+        display: block;
+    }
 </style>
 
 {% endblock %}
@@ -327,9 +451,10 @@
             </div>
             {% endif %}
             <div style="padding: 0 20px;">
-                <form action="." method="get">
+                <form action="{% url 'main' %}" method="get">
                     {% csrf_token %}
                     <input class="search" type="text" placeholder="Search....." name="searched">
+
                 </form>
             </div>
         </div>
@@ -354,7 +479,6 @@
                 <a href="#" style="text-decoration: none;" id="NameA">
                     <h3 id="Name" class="group__name">{{user}}</h3>
                 </a>
-                <!-- <a class="set_btn" href="#"><img width="30" src="{% static 'img/settings.png' %}" alt=""></a> -->
             </div>
             <div class="main-message-chat message-table-scroll" style="width: 100%; max-width: 100%;">
                 <table class="table">
@@ -362,16 +486,20 @@
                         {% for message in messages %}
                         {% if message.sender == request.user.username %}
                         <tr class="flex_right">
-                            <td>
+                            <td class="td_right">
                                 <p
                                     class="message-send-right bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">
                                     {{message.message}}
                                 </p>
+                                <ul class="on">
+                                    <li><a href="#">Delete</a></li>
+                                </ul>
                             </td>
                             <td>
                                 <p><small class="p-1 shadow-sm"
                                         style="margin-left: 10px;">{{message.timestamp|time:'H:i'}}</small></p>
                             </td>
+
                         </tr>
                         {% else %}
                         <tr class="flex_left">
@@ -409,12 +537,12 @@
     </div>
 </div>
 
-<!-- <div class="profile__modal">
-    <div class="profile__inner">
-        <div class="profile__user">
+<div class="modal">
+    <div class="modal__inner">
+        <div class="modal__content">
             <h3 class="setting">Setting</h3>
             <a class="upload__img" href="#">
-                <img width="150" style="border-radius: 50%;" src="{{ request.user.profile.avatar.url }}" alt="">
+                <img width="100" style="border-radius: 50%;" src="{{ request.user.profile.avatar.url }}" alt="">
             </a>
 
             {% if request.user.is_authenticated %}
@@ -430,11 +558,11 @@
                 <div>
                     <input class="user__input" id="email" value="{{request.user.email}}" type="text" readonly>
                 </div>
-                <div style="display: flex; margin-top: 30px;">
+                <div style="display: flex; justify-content: space-around;">
                     <button class="user__btn"><a href="{% url 'logout' %}"
-                            style="text-decoration: none; color: white; font-weight: bold;">Выйти</a></button>
+                            style="text-decoration: none; color: black; font-weight: bold;">Выйти</a></button>
                     <button class="user__btn" id="user" style="margin-left: 20px;"><a href="{% url 'changeProfile' %}"
-                            style="text-decoration: none; color: white; font-weight: bold;">Изменить</a></button>
+                            style="text-decoration: none; color: black; font-weight: bold;">Изменить</a></button>
                 </div>
             </form>
             {% endif %}
@@ -442,9 +570,38 @@
             <button class="close__btn" href="#"><img width="28" src="{% static 'img/close.png' %}" alt=""></button>
         </div>
     </div>
-</div> -->
+</div>
+
+
+<div class="modal modal__user">
+    <div class="modal__inner">
+        <div class="modal__content">
+            <a class="upload__img" href="#">
+                <img width="100" style="border-radius: 50%;" src="{% static 'img/account.png' %}" alt="">
+            </a>
+
+            {% if request.user.is_authenticated %}
+
+            <form class="user__form" action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <input class="user__input" id="username" value="{{user.username}}" type="text" readonly>
+                </div>
+                <div>
+                    <input class="user__input" id="useremail" value="{{user.email}}" type="text" readonly>
+                </div>
+            </form>
+            {% endif %}
+
+            <button class="close__btn user_btn" href="#"><img width="28" src="{% static 'img/close.png' %}" alt=""></button>
+        </div>
+    </div>
+</div>
+
 
 {{user.id|json_script:"json-username"}}
+{{user.username|json_script:"json-name"}}
+{{user.email|json_script:"json-email"}}
 {{request.user.username|json_script:"json-message-username"}}
 
 
@@ -457,44 +614,9 @@
 
 
 <script type="text/javascript">
-
-
-    // let btn = document.querySelector('.set_btn');
-    // let close = document.querySelector('.close__btn');
-    // let modal = document.querySelector('.profile__modal');
-    // let change = document.querySelector('.user__btn');
-    // let name = document.getElementById('name')
-
-    // btn.addEventListener('click', () => {
-
-    //     modal.classList.toggle('show');
-    // })
-
-    // close.addEventListener('click', () => {
-
-    //     modal.classList.remove('show');
-    // })
-
-    // Modal Info 
-
-    // let item = [{% for item in people %} "{{ item.email }}", {% endfor %}]
-
-    // let online = 'online'
-
-    // item.forEach((item, index) => {
-    //     name.innerHTML = `<h3 id="name" class="group__name" style="color: white;">${item}<br><span>${online}</span></h3>`
-    // })
-
-    // function showEmail(email) {
-    //     let parent = document.getElementById("Name");
-    //     let parentA = document.getElementById("NameA");
-
-    //     Name.innerHTML = email;
-
-    // }
-
     const id = JSON.parse(document.getElementById('json-username').textContent);
     const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
+    
 
     const socket = new WebSocket(
         'ws://'
@@ -546,6 +668,61 @@
         console.log(e)
         message_input.value = '';
     }
+
+</script>
+
+<!-- Modal -->
+
+<script>
+    let modal = document.querySelector('.modal');
+    let close__btn = document.querySelector('.close__btn');
+    let user_btn = document.querySelector('.user_btn');
+    let set_btn = document.querySelector('.set_btn');
+    let message_right = document.querySelectorAll('.message-send-right');
+    let on = document.querySelector('.on')
+    const username = JSON.parse(document.getElementById('json-name').textContent);
+    const email = JSON.parse(document.getElementById('json-email').textContent);
+    let userModal = document.querySelector('.modal__user')
+    let userName = document.querySelectorAll('#Name')
+
+    set_btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('click')
+        modal.classList.toggle('show')
+    })
+
+    close__btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        modal.classList.toggle('show');
+    })
+
+
+    // Rigth Mouse
+
+    for (let i = 0; i < message_right.length; i++) {
+
+        message_right[i].addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+
+            on.classList.toggle('block')
+
+        })
+
+    }
+
+    // User_Modal
+
+    for (let i = 0; i < userName.length; i++) {
+        userName[i].addEventListener('click', (e) => {
+            e.preventDefault()
+            userModal.classList.toggle('show')
+        })
+    }
+
+    user_btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        userModal.classList.toggle('show');
+    })
 
 </script>
 
