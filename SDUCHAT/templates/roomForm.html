@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<section class="rooms">
+    <div class="container">
+        
+        <div class="rooms_title">
+            <h2 class="rooms_txt">Rooms</h2>
+        </div>
+        
+        <div class="rooms_list">
+            {% for rooms in room %}
+                <div class="rooms_detail">
+                    <div class="rooms_info">
+                        <h2 class="rooms_name">{{ rooms.name }}</h2>
+                        <button>
+                            
+                            <a href="{% url 'room' rooms.slug %}" class="rooms_link">Join</a>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="globalArea" style="width: 700px; height: 350px"></div>
+    </div>
+</section>
+{% endblock %}

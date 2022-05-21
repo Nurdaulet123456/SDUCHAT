@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="room">
+    <div class="container">
+        <div class="room_detail">
+            <h1 class="room_name">{{ room.name }}</h1>
+        </div>
+        
+        <div class="room_block">
+            <div class="chat-messages room_chat_message " id="chat-messages">
+                {% for message in messages %}
+                    <div class="room_message">
+                        <div class="font-semibold">{{ message.user.username }}: {{ message.content }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="room_form">
+            <form method="post" action="." class="flex">
+                <input type="text" name="content" class="room_formInput" placeholder="Your message..." id="chat-message-input">
+        
+                <button 
+                    class="room_btn"
+                    id="chat-message-submit"
+                >Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block javascript %}
+{{ room.slug|json_script:"json-roomname" }}
+{{ request.user.username|json_script:"json-username" }}
+
+<script async>
+    const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+    const userName = JSON.parse(document.getElementById('json-username').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        console.log('onmessage')
+
+        const data = JSON.parse(e.data);
+
+        if (data.message) {
+            let html = '<div class="p-4 bg-gray-200 rounded-xl">';
+                html += '<p class="font-semibold" style = "display: inline">' + data.username + ': </p>';
+                html += '<p  style = "display: inline">' + data.message + '</p></div>';
+
+            document.querySelector('#chat-messages').innerHTML += html;
+
+            scrollToBottom();
+        } else {
+            alert('The message was empty!');
+        }
+    }
+
+    chatSocket.onclose = function(e) {
+        console.log('onclose')
+    }
+
+    //
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        e.preventDefault();
+
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        }));
+
+        messageInputDom.value = '';
+
+        return false;
+    }
+
+    //
+
+    function scrollToBottom() {
+        const objDiv = document.querySelector('#chat-messages');
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    scrollToBottom();
+</script>
+{% endblock %}

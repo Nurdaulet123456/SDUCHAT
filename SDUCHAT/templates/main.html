@@ -4,7 +4,7 @@
 
 
 {% block style %}
-<style>
+<!-- <style>
     html {
         font-size: 62.35%;
     }
@@ -432,7 +432,16 @@
     .modal__user.show {
         display: block;
     }
-</style>
+
+    .edit {
+        width: 100%;
+        max-width: 150px;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-align: center;
+    }
+</style> -->
 
 {% endblock %}
 
@@ -559,10 +568,10 @@
                     <input class="user__input" id="email" value="{{request.user.email}}" type="text" readonly>
                 </div>
                 <div style="display: flex; justify-content: space-around;">
-                    <button class="user__btn"><a href="{% url 'logout' %}"
-                            style="text-decoration: none; color: black; font-weight: bold;">Выйти</a></button>
-                    <button class="user__btn" id="user" style="margin-left: 20px;"><a href="{% url 'changeProfile' %}"
-                            style="text-decoration: none; color: black; font-weight: bold;">Изменить</a></button>
+                   <a class="edit" href="{% url 'logout' %}"
+                            style="text-decoration: none; color: black; font-weight: bold;">Logout</a>
+                    <a class="edit" href="{% url 'changeProfile' %}"
+                            style="text-decoration: none; color: black; font-weight: bold;">Edit</a>
                 </div>
             </form>
             {% endif %}
@@ -613,7 +622,7 @@
 
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     const id = JSON.parse(document.getElementById('json-username').textContent);
     const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
     
@@ -640,7 +649,14 @@
 
     socket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        console.log(data)
+        const date = new Date('min')
+        console.log(date)
+        // console.log(e)
+        
+    //    if (data.username) {
+    //        data.username.sort((a, b) => a - b)
+    //    }
+
         if (data.username == message_username) {
             document.querySelector('#chat-body').innerHTML += `<tr class="flex_right">
                                                                 <td>
@@ -669,10 +685,10 @@
         message_input.value = '';
     }
 
-</script>
+</script> -->
 
 <!-- Modal -->
-
+<!-- 
 <script>
     let modal = document.querySelector('.modal');
     let close__btn = document.querySelector('.close__btn');
@@ -724,7 +740,7 @@
         userModal.classList.toggle('show');
     })
 
-</script>
+</script> -->
 
 
 {% endblock %}

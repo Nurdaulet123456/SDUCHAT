@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'forms.apps.FormsConfig',
     'main.apps.MainConfig',
     'myProfile.apps.MyprofileConfig',
+    'rooms.apps.RoomsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

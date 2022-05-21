@@ -1,4 +1,7 @@
 from datetime import datetime
+from distutils.command import upload
+from email.policy import default
+# from email.mime import image
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -47,6 +50,6 @@ class ChatModel(models.Model):
     message = models.TextField(null=True, blank=True)
     thread_name = models.CharField(null=True, blank=True, max_length=50)
     timestamp = models.DateTimeField(auto_now_add=True)
-
+    image = models.ImageField(upload_to="media/img",default="img/account.png" ,null=True)
     def __str__(self) -> str:
         return self.message
