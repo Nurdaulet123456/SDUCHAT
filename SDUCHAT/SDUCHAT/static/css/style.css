@@ -435,3 +435,86 @@ table {
     text-align: center;
 }
 
+
+.room__inner {
+    /* margin-bottom: 20px; */
+    width: 100%;  
+    height: 100vh;
+    background-color: #F2F6FC;
+    padding: 20px 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+}
+
+.room_detail {
+    width: 100%;
+    background-color: white;
+
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.room_block {
+    width: 100%;
+}
+
+.font-semibold {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.room_message {
+    margin-bottom: 30px;
+}
+
+.font-semibold > span {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+
+.room_flex {
+    width: 100%;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-28%);
+    bottom: 30px;
+}
+
+.room_formInput {
+    width: 100%;
+    max-width: 1000px;
+    padding: 15px 30px;
+    border-radius: 8px;
+
+    border: none;
+    background-color: rgba(0, 0, 0, 0.0290);
+    color: black;
+    font-size: 18px;
+
+    position: relative!important;
+}
+
+.room_formInput::placeholder {
+    font-size: 15px;
+}
+
+.room_formInput:focus {
+    outline: none;
+}
+
+.room_submit {
+    border: none;
+    background-color: #161c2d;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 20px;
+
+    cursor: pointer;
+}

@@ -58,14 +58,28 @@
 
         .container {
             width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
             height: 100vh;
+        }
 
+        .update__page {
+            display: flex;
+            flex-direction: column;
         }
 
         .update {
-            display: grid;
-            place-items: center;
+           display: flex;
+           align-items: center;
+           justify-content: space-around;
+           
+           padding-top: 50%;
+           transform: translateY(-40%);
+
+        }
+
+        .update__avatar {
+            margin-right: 30px;
         }
 
         input {
@@ -74,12 +88,15 @@
             padding: 15px 50px;
             font-weight: normal;
             font-size: 1.5rem;
-            margin-bottom: 20px;
             width: 100%;
             min-width: 450px;
+
+            border-radius: 5px;
+            margin-bottom: 10px;
+            margin-top: 10px;
         }
 
-        .btn {
+        .update_btn {
             border: none;
             background-color: var(--leftColor);
             padding: 15px 60px;
@@ -96,7 +113,8 @@
 
 
     {% block content %}
-    <div class="container" style="background-color: #163266;">
+    <div class="update__page">
+    <div class="container" style="background-color: #F2F6FC;">
 
         {% if user_form.errors %}
         <div class="alert alert-danger alert-dismissible"  role="alert">
@@ -112,28 +130,31 @@
         {% endif %}
 
         <div class="update">
-            <div class="avatar">
-                <img src="{{ user.profile.avatar.url }}" alt="" class="img" width="200">
+            <div class="update__avatar">
+                <img src="{{ user.profile.avatar.url }}" alt="" class="img" width="400">
             </div>
 
             
             <form class="form" action="" method="POST" enctype="multipart/form-data" style = "font-weight:700; width: 100%; max-width: 600px;">
+                <h3
+                style="text-align: center; margin-bottom: 20px; font-weight: bold; font-size: 28px;">
+                Edit
+                 </h3>
                 {% csrf_token %}
-                <fieldset class = "form-group" style="color: white; margin: 0 auto; display: flex;
-                 flex-direction: column; align-items: center;">
-                    <legend class = "border-bottom mb-4" style="margin-bottom: 20px;">Update your profile information</legend>
+                
+                    <!-- <legend class = "border-bottom mb-4" style="margin-bottom: 20px;">Update your profile information</legend> -->
                    {{ profile_form }}
 
-                    <div style="display: flex;">
-                        <button class="btn" type="submit">Save change</button>
-                        <button class="btn" type="submit" style="margin-left: 20px">Reset change</button>
+                    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <button class="update_btn" type="submit">Save change</button>
+                        <button class="update_btn" type="submit" style="margin-left: 20px">Reset change</button>
                     </div>
 
                     
-                </fieldset>
+               
             </form>
           
         </div>
-
+    </div>
     </div>
 {% endblock %}

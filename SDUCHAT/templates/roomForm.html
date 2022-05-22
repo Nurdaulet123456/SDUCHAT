@@ -1,29 +1,195 @@
+
+
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags%}
+{% load static %}
 
-{% block content %}
-<section class="rooms">
-    <div class="container">
+
+{% block style %}
+
+    <style>
+
+        html {
+            font-size: 62.35%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1.6rem;
+            background-color: white;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #161c2d;
+            overflow: hidden;
+        }
+
+        :root {
+            --textColorBlue: #5492FF;
+            --textColorWhite: #F2F8FF;
+     }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        p {
+            padding: 0;
+
+            margin: 0;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Forms */
+
+        .forms__inner {
+            display: flex;
+            height: 100vh;
+        }
+
+        .forms__name {
+            width: 30%;
+            background-color: var(--textColorBlue);
+            /* display: grid;
+            place-items: center; */
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+
+            font-weight: 700;
+            color: white;
+            font-size: 100px;
+            text-shadow: 0 4px 8px #fff;
+
+            animation: 1s infinite alternate text;
+            
+        }
+
+        @keyframes text {
+            0% {
+                text-shadow: none;
+            }
+
+            /* 50% {
+                text-shadow: 0 2px 4px #fff;
+            } */
+
+            100% {
+                text-shadow: 0 4px 8px #fff;
+            }
+        }
+
+        .forms__name > span {
+            font-size: 40px;
+        }
+
+        .forms__reg {
+            width: 70%;
+            background-color: var(--textColorWhite);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .rooms_info {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+
+            margin-left: 1%;
+            transform: translateX(6%);
+        }
+
+        .rooms__join {
+            width: 100%;
+            max-width: 200px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
         
-        <div class="rooms_title">
-            <h2 class="rooms_txt">Rooms</h2>
-        </div>
+        .rooms_name {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            
+            margin-bottom: 15px;
+        }
+
+        .room_btn {
+            display: inline-block;
+            width: 100%;
+            background: transparent;
+            border-radius: 5px;
+            border: 1px solid var(--textColorBlue);
+            padding: 10px 0;
+            text-align: center;
+
+            margin: 0 auto;
+
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 0.8px;
+        }
+    </style>
+
+    {%  endblock %}
+
+    {% block content %}
+
+    <div class="forms">
         
-        <div class="rooms_list">
-            {% for rooms in room %}
-                <div class="rooms_detail">
-                    <div class="rooms_info">
-                        <h2 class="rooms_name">{{ rooms.name }}</h2>
-                        <button>
-                            
-                            <a href="{% url 'room' rooms.slug %}" class="rooms_link">Join</a>
-                        </button>
+            <div class="forms__inner">
+                <div class="forms__name">
+                    SDU<br><span>CHAT</span>
+                </div>
+                <div class="forms__reg">
+                        
+                                <div class="rooms_info">
+                                    {% for rooms in room %}
+                                    <div class="rooms__join">
+                                    <h2 class="rooms_name">{{ rooms.name }}</h2>
+                                
+                                        
+                                        <a class="room_btn" href="{% url 'room' rooms.slug %}">Join</a>
+                                   
+                                </div>
+                                {% endfor %}
+                            </div>
+                            </div>
+                        
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+      
 
-        <div id="globalArea" style="width: 700px; height: 350px"></div>
-    </div>
-</section>
-{% endblock %}
+  
+ {% endblock %}

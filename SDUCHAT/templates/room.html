@@ -2,8 +2,14 @@
 
 {% block content %}
 
+{% block style %}
+
+
+{% endblock %}
+
 <section class="room">
     <div class="container">
+        <div class="room__inner">
         <div class="room_detail">
             <h1 class="room_name">{{ room.name }}</h1>
         </div>
@@ -12,22 +18,23 @@
             <div class="chat-messages room_chat_message " id="chat-messages">
                 {% for message in messages %}
                     <div class="room_message">
-                        <div class="font-semibold">{{ message.user.username }}: {{ message.content }}</div>
+                        <div class="font-semibold"><span>{{ message.user.username }}:</span> {{ message.content }}</div>
                     </div>
                 {% endfor %}
             </div>
         </div>
         
         <div class="room_form">
-            <form method="post" action="." class="flex">
+            <form method="post" action="." class="room_flex">
                 <input type="text" name="content" class="room_formInput" placeholder="Your message..." id="chat-message-input">
         
                 <button 
-                    class="room_btn"
+                    class="room_submit"
                     id="chat-message-submit"
                 >Submit</button>
             </form>
         </div>
+    </div>
     </div>
 </section>
 
