@@ -454,6 +454,7 @@
             <div class="header__me">
                 <img class="avatar" width="60" src="{{ request.user.profile.avatar.url }}" alt="">
                 <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                    <!-- <a class="star" href="{% url 'starreds' %}"> <img width="25" src="{% static 'img/star-filled.svg' %}" alt=""> </a> -->
                     <h3 class="header__name user_name">{{request.user.email}}</h3>
                     <a class="set_btn" href="#"><img width="25" src="{% static 'img/settings.png' %}" alt=""></a>
                 </div>
@@ -473,10 +474,12 @@
         <div class="s">
             <div class="header__me scroll_me" id="scroll_me" style="cursor: pointer;">
                 <img width="60" src="{% static 'img/icons8-account-48.png' %}" alt="">
+                
                 <a class="user" id="user" href="{% url 'chat' user.username%}">
                     <h3 class="header__name">
                         {{user.username}}
                     </h3>
+                    <p></p>
                 </a>
             </div>
         </div>
@@ -624,9 +627,10 @@
 
 
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     const id = JSON.parse(document.getElementById('json-username').textContent);
     const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
+    const message_name = JSON.parse(document.getElementById('json-name').textContent)
     
 
     const socket = new WebSocket(
@@ -651,15 +655,10 @@
 
     socket.onmessage = function (e) {
         const data = JSON.parse(e.data);
-        const date = new Date('min')
-        console.log(date)
-        // console.log(e)
-        
-    //    if (data.username) {
-    //        data.username.sort((a, b) => a - b)
-    //    }
 
         if (data.username == message_username) {
+
+
             document.querySelector('#chat-body').innerHTML += `<tr class="flex_right">
                                                                 <td>
                                                                 <p class="message-send-right bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">${data.message}</p>
@@ -675,7 +674,7 @@
     }
 
     document.querySelector('#chat-message-submit').onclick = function (e) {
-
+        // const data = JSON.parse(e.data);
         const message_input = document.querySelector('#message_input');
         const message = message_input.value;
 
@@ -687,7 +686,7 @@
         message_input.value = '';
     }
 
-</script> -->
+</script>
 
 <!-- Modal -->
 <!-- 
@@ -744,5 +743,27 @@
 
 </script> -->
 
+<!-- 
+<script>
+    function postdata(link) {
+        var elem = document.getElementById("a" + $(link).val());
+        if (elem.src == 'http://localhost:8000/static/img/star-filled.svg') {
+            elem.src = "/static/img/star-svgrepo-com.svg";
+        }
+        else {
+            elem.src = "/static/img/star-filled.svg";
+        }
+        $.ajax({
+            type:"POST",
+            url:"/add_star/",
+            data:{
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                'id': $(link).val(),
+            },
+            datatype:'json'
+        });
+    }
+
+</script> -->
 
 {% endblock %}

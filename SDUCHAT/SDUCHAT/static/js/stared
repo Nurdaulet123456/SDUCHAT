@@ -1,0 +1,18 @@
+// function postdata(link) {
+//         var elem = document.getElementById("a" + $(link).val());
+//         if (elem.src == 'http://localhost:8000/static/img/star-filled.svg') {
+//             elem.src = "/static/img/star-svgrepo-com.svg";
+//         }
+//         else {
+//             elem.src = "/static/img/star-filled.svg";
+//         }
+//         $.ajax({
+//             type:"POST",
+//             url:"/add_star/",
+//             data:{
+//                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+//                 'id': $(link).val(),
+//             },
+//             datatype:'json'
+//         });
+//     }

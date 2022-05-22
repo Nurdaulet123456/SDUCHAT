@@ -4,6 +4,26 @@
 
 {% block style %}
 
+<style>
+    .room__inner {
+    width: 100%;
+
+    overflow-y: scroll;
+    mask-image: linear-gradient(to top, transparent, rgb(100, 100, 100)),
+        linear-gradient(to left, transparent 17px, rgb(100, 100, 100) 17px);
+    mask-size: 100% 20000px;
+    mask-position: left bottom;
+    -webkit-mask-image: linear-gradient(to top, transparent, rgb(100, 100, 100)),
+        linear-gradient(to left, transparent 17px, rgb(100, 100, 100) 17px);
+    -webkit-mask-size: 100% 20000px;
+    -webkit-mask-position: left bottom;
+    transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+}
+
+.room__inner:hover {
+    -webkit-mask-position: left bottom;
+}
+</style>
 
 {% endblock %}
 
@@ -63,8 +83,8 @@
 
         if (data.message) {
             let html = '<div class="p-4 bg-gray-200 rounded-xl">';
-                html += '<p class="font-semibold" style = "display: inline">' + data.username + ': </p>';
-                html += '<p  style = "display: inline">' + data.message + '</p></div>';
+                html += '<p class="font-semibold" style = "display: inline; font-size: 25px; margin-right: 10px;">' + data.username + ': </p>';
+                html += '<p  style = "display: inline; font-weight: bold; font-size: 20px;">' + data.message + '</p></div>';
 
             document.querySelector('#chat-messages').innerHTML += html;
 

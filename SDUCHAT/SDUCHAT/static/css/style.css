@@ -448,6 +448,7 @@ table {
     border-radius: 10px;
 }
 
+
 .room_detail {
     width: 100%;
     background-color: white;
@@ -457,8 +458,23 @@ table {
     margin-bottom: 30px;
 }
 
-.room_block {
+.room {
     width: 100%;
+
+    overflow-y: scroll;
+    mask-image: linear-gradient(to top, transparent, rgb(100, 100, 100)),
+        linear-gradient(to left, transparent 17px, rgb(100, 100, 100) 17px);
+    mask-size: 100% 20000px;
+    mask-position: left bottom;
+    -webkit-mask-image: linear-gradient(to top, transparent, rgb(100, 100, 100)),
+        linear-gradient(to left, transparent 17px, rgb(100, 100, 100) 17px);
+    -webkit-mask-size: 100% 20000px;
+    -webkit-mask-position: left bottom;
+    transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+}
+
+.room:hover {
+    -webkit-mask-position: left bottom;
 }
 
 .font-semibold {

@@ -53,3 +53,8 @@ class ChatModel(models.Model):
     image = models.ImageField(upload_to="media/img",default="img/account.png" ,null=True)
     def __str__(self) -> str:
         return self.message
+
+
+class Starred(models.Model):
+    user = models.ManyToManyField(User)
+    star = models.IntegerField()
