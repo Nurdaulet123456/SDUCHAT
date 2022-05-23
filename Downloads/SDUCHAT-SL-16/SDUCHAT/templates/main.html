@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="page">
+    <div class="left__content">
+        <div class="sduchat" style="display:flex; justify-content:flex-start">
+            <img width="40px" src="{% static 'img/chat-svgrepo-com.svg' %}" alt="logo">
+        <h1 style="margin-left: 20px;" >SDUCHAT</h1></div>
+        <div class="left">
+            {% if request.user.is_authenticated %}
+            <div class="header__me">
+                <img class="avatar" width="100" height="100"  src="{{ request.user.profile.avatar.url }}" style="border-radius: 50%;" alt="">
+                <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                    <h3 class="header__name user_name">{{request.user.email}}</h3>
+                    <a class="set_btn" href="#"><img width="25" src="{% static 'img/setting-png-icon-free-download-292049.png' %}" alt=""></a>
+                </div>
+            </div>
+            {% endif %}
+            <div style="padding: 0 20px;">
+                <form action="{% url 'main' %}" method="POST">
+                    {% csrf_token %}
+                    <input class="search" type="text" placeholder="Search....." name="searched">
+
+                </form>
+            </div>
+            
+            
+        </div>
+
+       
+      
+            <div class="room_new_page">
+                <div style="display: flex; justify-content: space-around;">
+                <a class="room_page" href="{% url 'roomForm' %}">Rooms</a>
+                <a class="room_page margin__r" href="{% url 'starreds' %}">Starreds</a>
+                </div>
+                {% for user in users %}
+            <div class="header__me scroll_me" id="scroll_me" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                <div class="user_header" style="display: flex; align-items: center;">
+                
+                <img width="60" src="{{ user.profile.avatar.url }}" alt="">
+                <a class="user" id="user" href="{% url 'chat' user.username%}">
+                    <h3 class="header__name">
+                        {{user.username}}
+                    
+                    </h3>
+                </a>
+                </div>
+           
+             <form method="POST" style="padding-top: 15px;">
+                {% csrf_token %}
+                <button class="started_btn" onclick="postdata(this)" value="{{ user.pk }}" style="background-color: transparent; border: none; padding: 0; margin: 0;" type="button" >
+                    {% if user.profile in request.user.profile.star_user.all %}
+                            <img id="a{{ user.pk }}" src="{% static 'img/star-filled.svg' %}" width='20px' alt="star" style="margin-top: -16px; margin-left: -7px;">
+                        {% else %}
+                            <img id="a{{ user.pk }}" src="{% static 'img/star-svgrepo-com.svg' %}"  width='20px' alt="star-filled" style="margin-top: -16px; margin-left: -7px;">
+                        {% endif %}
+                </button>
+              </form>
+
+         
+        
+        </div>
+        {% endfor %}
+    </div>
+       
+
+    </div>
+    <div class="right__content">
+        <div class="container">
+            <div class="right__header" id="parent">
+                <a href="#" style="text-decoration: none;" id="NameA">
+                    <h3 id="Name" class="group__name">{{user}}</h3>
+                </a>
+            </div>
+            <div class="main-message-chat message-table-scroll" style="width: 100%; max-width: 100%;">
+                <table class="table">
+                    <tbody id='chat-body'>
+                        {% for message in messages %}
+                        {% if message.sender == request.user.username %}
+                        <tr class="flex_right">
+                            <td class="td_right">
+                                <p
+                                    class="message-send-right bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">
+                                    {{message.message}}
+                                </p>
+                                <ul class="on">
+                                    <li><a href="#">Delete</a></li>
+                                </ul>
+                            </td>
+                            <td>
+                                <p><small class="p-1 shadow-sm"
+                                        style="margin-left: 10px;">{{message.timestamp|time:'H:i'}}</small></p>
+                            </td>
+
+                        </tr>
+                        {% else %}
+                        <tr class="flex_left">
+                            <td>
+                                <p
+                                    class="message-send-left bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">
+                                    {{message.message}}
+                                </p>
+                            </td>
+                            <td>
+                                <p><small class="p-1 shadow-sm">{{message.timestamp|time:'H:i'}}</small></p>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="right__message">
+                <div class="col-sm-8">
+                    <input type="text" class="send_message" id="message_input" placeholder="Write message...">
+                </div>
+                <div class="col-sm-2 mt-1">
+                    <div class="control">
+                        <button class="btn btn-success" id="chat-message-submit"
+                            style="border: none; background-color: transparent; cursor: pointer;" type="submit">
+
+                            <img width="30" src="{% static 'img/icons8-email-send-32.png' %}" alt="">
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal">
+    <div class="modal__inner">
+        <div class="modal__content">
+            <h3 class="setting">Setting</h3>
+            <a class="upload__img" href="#">
+                <img width="100" height="100" style="border-radius: 50%;" src="{{ request.user.profile.avatar.url }}" alt="">
+            </a>
+
+            {% if request.user.is_authenticated %}
+
+            <form class="user__form" action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <input class="user__input" id="name" value="{{request.user.username}}" type="text" readonly>
+                </div>
+                <div>
+                    <input class="user__input" id="last" value="{{request.user.last_name}}" type="text" readonly>
+                </div>
+                <div>
+                    <input class="user__input" id="email" value="{{request.user.email}}" type="text" readonly>
+                </div>
+                <div style="display: flex; justify-content: space-around;">
+                    <button class="user__btn"><a href="{% url 'logout' %}"
+                        style="text-decoration: none; color: white; font-weight: bold; background-color:#5492FF; padding: 10px 20px; border-radius: 5px;">
+                        Log out
+                    </a>
+                </button>
+                <button class="user__btn" id="user" style="margin-left: 20px;"><a href="{% url 'changeProfile' %}"
+                        style="text-decoration: none; color: white; font-weight: bold; background-color:#5492FF;  padding: 10px 20px; border-radius: 5px;">
+                        Edit
+                    </a>
+                </button>
+                </div>
+            </form>
+            {% endif %}
+
+            <button class="close__btn" href="#"><img width="28" src="{% static 'img/close.png' %}" alt=""></button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal__user">
+    <div class="modal__inner">
+        <div class="modal__content">
+            <a class="upload__img" href="#">
+                <img width="100" height="100" style="border-radius: 50%;" src="{{ user.profile.avatar.url }}" alt="">
+            </a>
+            
+           
+            {% if request.user.is_authenticated %}
+
+            <form class="user__form" action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <input class="user__input" id="username" value="{{user.username}}" type="text" readonly>
+                </div>
+                <div>
+                    <input class="user__input" id="useremail" value="{{user.email}}" type="text" readonly>
+                </div>
+            </form>
+            {% endif %}
+
+            <button class="close__btn user_btn" href="#"><img width="28" src="{% static 'img/close.png' %}" alt=""></button>
+        </div>
+    </div>
+</div>
+
+
+{{user.id|json_script:"json-username"}}
+{{user.username|json_script:"json-name"}}
+{{user.email|json_script:"json-email"}}
+{{user.avatar|json_script:"json-avatar"}}
+{{request.user.username|json_script:"json-message-username"}}
+
+
+{% endblock %}
+
+
+{% block javascript %}
+<!-- Script -->
+<script type="text/javascript">
+    const id = JSON.parse(document.getElementById('json-username').textContent);
+    const message_username = JSON.parse(document.getElementById('json-message-username').textContent);
+    
+
+    const socket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + id
+        + '/'
+    );
+
+    socket.onopen = function (e) {
+        console.log("CONNECTION ESTABLISHED");
+    }
+
+    socket.onclose = function (e) {
+        console.log("CONNECTION LOST");
+    }
+
+    socket.onerror = function (e) {
+        console.log("ERROR OCCURED");
+    }
+
+    socket.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+            console.log(data)
+        if (data.username == message_username) {
+            document.querySelector('#chat-body').innerHTML += `<tr class="flex_right">
+                                                                <td>
+                                                                <p class="message-send-right bg-success p-2 mt-2 mr-5 shadow-sm text-white float-right rounded">${data.message}</p>
+                                                                </td>
+                                                            </tr>`
+        } else {
+            document.querySelector('#chat-body').innerHTML += `<tr class="flex_left">
+                                                                <td>
+                                                                <p class="message-send-left bg-primary p-2 mt-2 mr-5 shadow-sm text-white float-left rounded">${data.message}</p>
+                                                                </td>
+                                                            </tr>`
+        }
+    }
+
+    document.querySelector('#chat-message-submit').onclick = function (e) {
+
+        const message_input = document.querySelector('#message_input');
+        const message = message_input.value;
+
+        socket.send(JSON.stringify({
+            'message': message,
+            'username': message_username
+        }));
+        console.log(e)
+        message_input.value = '';
+    }
+
+</script>
+<!-- Modal -->
+<script>
+    let modal = document.querySelector('.modal');
+    let close__btn = document.querySelector('.close__btn');
+    let user_btn = document.querySelector('.user_btn');
+    let set_btn = document.querySelector('.set_btn');
+    let message_right = document.querySelectorAll('.message-send-right');
+    let on = document.querySelector('.on')
+    const username = JSON.parse(document.getElementById('json-name').textContent);
+    const email = JSON.parse(document.getElementById('json-email').textContent);
+    let userModal = document.querySelector('.modal__user')
+    let userName = document.querySelectorAll('#Name')
+
+
+
+    function postdata(link) {
+        var elem = document.getElementById("a" + $(link).val());
+        if (elem.src == 'http://127.0.0.1:8000/static/img/star-filled.svg') {
+            elem.src = "/static/img/star-svgrepo-com.svg";
+        }
+        else {
+            elem.src = "/static/img/star-filled.svg";
+        }
+        $.ajax({
+            type:"POST",
+            url:"/add_star/",
+            data:{
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                'id': $(link).val(),
+            },
+            datatype:'json'
+        });
+    }
+
+
+    set_btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('click')
+        modal.classList.toggle('show')
+    })
+
+    close__btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        modal.classList.toggle('show');
+    })
+
+
+    // Rigth Mouse
+
+    for (let i = 0; i < message_right.length; i++) {
+
+        message_right[i].addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+
+            on.classList.toggle('block')
+
+        })
+
+    }
+
+    // User_Modal
+
+    for (let i = 0; i < userName.length; i++) {
+        userName[i].addEventListener('click', (e) => {
+            e.preventDefault()
+            userModal.classList.toggle('show')
+        })
+    }
+
+    user_btn.addEventListener('click', (e) => {
+        e.preventDefault()
+        userModal.classList.toggle('show');
+    })
+
+
+    
+</script>
+{% endblock %}

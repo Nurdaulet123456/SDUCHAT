@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block style %}
+    <style>
+         html {
+            font-size: 62.35%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1.6rem;
+            background-color: white;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #161c2d;
+            overflow: hidden;
+        }
+
+        :root {
+            --textColorBlue: #5492FF;
+            --textColorWhite: #fffdfd;
+            --headerColor: #163266;
+            --leftColor: #2953a1;
+     }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        p {
+            padding: 0;
+
+            margin: 0;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .img {
+            display: block;
+            max-width: 100%;
+
+            margin-bottom: 40px;
+        }
+
+        /* Container */
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100vh;
+        }
+
+        .update__page {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .update {
+           display: flex;
+           align-items: center;
+           justify-content: space-around;
+           
+           padding-top: 50%;
+           transform: translateY(-40%);
+
+        }
+
+        .update__avatar {
+            margin-right: 30px;
+        }
+
+        input {
+            border: none;
+            background-color: var(--textColorWhite);
+            padding: 15px 50px;
+            font-weight: normal;
+            font-size: 1.5rem;
+            width: 100%;
+            min-width: 450px;
+
+            border-radius: 5px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .update_btn {
+            border: none;
+            background-color: var(--leftColor);
+            padding: 15px 60px;
+            cursor: pointer;
+
+            color: white;
+
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .exit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            position: fixed;
+            top: 20px;
+            left: 15%;
+        }
+    </style>
+
+    {% endblock %}
+
+
+    {% block content %}
+    <div class="update__page">
+    <div class="container" style="background-color: #F2F6FC;">
+
+        {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible"  role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+
+        <div class="update">
+            <div class="update__avatar">
+                <img src="{{ user.profile.avatar.url }}" alt="" class="img" width="400">
+            </div>
+
+            
+            <form class="form" action="" method="POST" enctype="multipart/form-data" style = "font-weight:700; width: 100%; max-width: 600px; border-radius:15px;">
+                <h3
+                style="text-align: center; margin-bottom: 20px; font-weight: bold; font-size: 28px;">
+                Edit
+                 </h3>
+                {% csrf_token %}
+                
+                    <!-- <legend class = "border-bottom mb-4" style="margin-bottom: 20px;">Update your profile information</legend> -->
+                   {{ profile_form }}
+
+                    <div style="display: flex; justify-content: space-evenly; margin-top: 20px;">
+                        <button class="update_btn" type="submit" style="border-radius:10px ;">Save </button>
+                        <button class="update_btn" type="reset" style="margin-left: 20px; border-radius:10px;">Reset</button>
+                    </div>
+
+                    
+               
+            </form>
+            
+        </div>
+        <a class="exit" href="{% url 'main' %}">Back</a>
+    </div>
+    </div>
+{% endblock %}

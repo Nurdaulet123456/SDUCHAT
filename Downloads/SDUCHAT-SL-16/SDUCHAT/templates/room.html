@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% block style %}
+
+<style>
+    .room__inner {
+        width: 100%;
+
+        overflow-y: scroll;
+        mask-image: linear-gradient(to top, transparent, rgb(100, 100, 100)),
+            linear-gradient(to left, transparent 17px, rgb(100, 100, 100) 17px);
+        mask-size: 100% 20000px;
+        mask-position: left bottom;
+        -webkit-mask-image: linear-gradient(to top, transparent, rgb(100, 100, 100)),
+            linear-gradient(to left, transparent 17px, rgb(100, 100, 100) 17px);
+        -webkit-mask-size: 100% 20000px;
+        -webkit-mask-position: left bottom;
+        transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+    }
+
+    .room__inner:hover {
+        -webkit-mask-position: left bottom;
+    }
+
+    .room_right {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>
+
+{% endblock %}
+
+<section class="room">
+    <div class="container">
+        
+        <div class="room__inner">
+            <div class="room_detail">
+                <h1 class="room_name">{{ room.name }}</h1>
+            </div>
+
+            <div class="room_block">
+                <div class="chat-messages room_chat_message " id="chat-messages">
+                    {% for message in messages %}
+                    {% if message.sender == request.user.username %}
+                    <div class="room_message room_right">
+                        <div class="font-semibold"><span>{{ message.user.username }}:</span> {{ message.content }}</div>
+                    </div>
+                    {% else %}
+                    <div class="room_message">
+                        <div class="font-semibold"><span>{{ message.user.username }}:</span> {{ message.content }}</div>
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="room_form">
+                <form method="post" action="." class="room_flex">
+                    <input type="text" name="content" class="room_formInput" placeholder="Your message..."
+                        id="chat-message-input">
+
+                    <button class="room_submit" id="chat-message-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block javascript %}
+{{ room.slug|json_script:"json-roomname" }}
+{{ request.user.username|json_script:"json-username" }}
+
+<script async>
+    const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+    const userName = JSON.parse(document.getElementById('json-username').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function (e) {
+        console.log('onmessage')
+
+        const data = JSON.parse(e.data);
+
+        if (data.message) {
+            let html = '<div class="p-4 bg-gray-200 rounded-xl">';
+            html += '<p class="font-semibold" style = "display: inline; font-size: 25px; margin-right: 10px; margin-bottom: 20px">' + data.username + ': </p>';
+            html += '<p  style = "display: inline; font-weight: bold; font-size: 20px;">' + data.message + '</p></div>';
+
+            document.querySelector('#chat-messages').innerHTML += html;
+
+            scrollToBottom();
+        } else {
+            alert('The message was empty!');
+        }
+    }
+
+    chatSocket.onclose = function (e) {
+        console.log('onclose')
+    }
+
+    //
+
+    document.querySelector('#chat-message-submit').onclick = function (e) {
+        e.preventDefault();
+
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        }));
+
+        messageInputDom.value = '';
+
+        return false;
+    }
+
+    //
+
+    function scrollToBottom() {
+        const objDiv = document.querySelector('#chat-messages');
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    scrollToBottom();
+</script>
+{% endblock %}

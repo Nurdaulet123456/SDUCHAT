@@ -1,0 +1,229 @@
+
+
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags%}
+{% load static %}
+
+
+{% block style %}
+
+    <style>
+
+        html {
+            font-size: 62.35%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1.6rem;
+            background-color: white;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #161c2d;
+            overflow: hidden;
+        }
+
+        :root {
+            --textColorBlue: #5492FF;
+            --textColorWhite: #F2F8FF;
+     }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        h1,h2,h3,h4,h5,h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        /* Forms */
+
+        .forms__inner {
+            display: flex;
+            height: 100vh;
+        }
+
+        .forms__name {
+            width: 30%;
+            background-color: var(--textColorBlue);
+            /* display: grid;
+            place-items: center; */
+
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+
+            font-weight: 700;
+            color: white;
+            font-size: 100px;
+            text-shadow: 0 4px 8px #fff;
+
+            animation: 1s infinite alternate text;
+
+            /* position: relative; */
+            
+        }
+
+        @keyframes text {
+            0% {
+                text-shadow: none;
+            }
+
+            /* 50% {
+                text-shadow: 0 2px 4px #fff;
+            } */
+
+            100% {
+                text-shadow: 0 4px 8px #fff;
+            }
+        }
+
+        .forms__name > span {
+            font-size: 40px;
+        }
+
+        .forms__reg {
+            width: 70%;
+            background-color: var(--textColorWhite);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+        }
+
+        .rooms_info {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rooms__join {
+            width: 100%;
+            max-width: 200px;
+            
+        }
+        
+        .rooms_name {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            
+            margin-bottom: 5px;
+        }
+
+        .room_btn {
+            display: inline-block;
+            width: 100%;
+            background: transparent;
+            border-radius: 5px;
+            border: 1px solid var(--textColorBlue);
+            padding: 10px 0;
+            text-align: center;
+
+            margin: 0 auto;
+
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 0.8px;
+            transition: all .3s linear;
+            outline: none;
+        }
+        .room_btn:where(:hover, :focus) {
+            background-color: #5492FF;
+            color: white;
+        }
+
+        .exit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 200px 200px;
+            column-gap: 70px;
+        }
+    </style>
+
+    {%  endblock %}
+
+    {% block content %}
+
+    <div class="forms">    
+        <div class="forms__inner">
+            <div class="forms__name ">
+                SDU<br><span>CHAT</span>
+            
+            </div>
+            <div class="forms__reg">
+                <div class="grid">
+                    {% for rooms in room %}
+                    <div class="rooms__join">
+                        
+                        <h2 class="rooms_name">{{ rooms.name }}</h2>
+                        <a class="room_btn" href="{% url 'room' rooms.slug %}">Join</a>
+                    </div>
+                    {% endfor %}
+                </div> 
+                    <a class="exit" href="{% url 'main' %}">Back</a>
+                </div>
+            </div>  
+
+            <!-- <div class="place-center">
+                <div class="">
+                    {% for door in room %}
+                        <div class="room-wrapper">
+                            <img src="{{ rooms.photo }}" alt="photo">
+                            <div class="room_name">{{ rooms.name }}</div>
+                            <a href="{% url 'main' %}" class="join_btn">Join</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="back-btn-wrapper">
+                    <a href="{% url 'main' %}" class="back-btn">Back</a>
+                </div>
+            </div> -->
+        </div>  
+ {% endblock %}
